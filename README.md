@@ -74,41 +74,45 @@ CREATE TABLE pedidos (
 CREATE INDEX idx_order_id ON pedidos(order_id);
 CREATE INDEX idx_contract_status ON pedidos(contract_loja, status);
 ```
-Integration Options
-1. Button Integration (Quick & Recommended for Most Sites)
-Folder: button integration/
+## Integration Options
 
-checkout.php: Generates secure order_id, stores in DB & session, embeds Paynch Button via <script src="https://pay.paynch.io/button/button-connect.js">
-Redirects to confirmacao.php?orderId=... on success
-confirmacao.php: Polls itself (auto-reload every 5s), checks API, applies 1.1–1.2% tolerance, updates DB transactionally
+### 1. Button Integration (Quick & Recommended for Most Sites)
+**Folder:** `button integration/`
 
-Best for: Simple e-commerce, digital products, fast setup.
-2. Manual / Custom Integration (Full Control & Web3 Experience)
-Folder: manual integration/
+- `checkout.php`: Generates secure `order_id`, stores it in DB and session, displays product details and embeds the Paynch Button via  
+  `<script src="https://pay.paynch.io/button/button-connect.js">` with all required data attributes.  
+  On success, redirects to `confirmacao.php?orderId=...`
+- `confirmacao.php`: Confirmation page that polls itself (auto-reload every ~5s), queries the Paynch API, applies 1.1–1.2% tolerance, updates the database transactionally and shows success/failure status.
 
-index.php: Demo store → links to checkout.php?produto=...&amount=...&shop=...
-checkout.php: Generates/reuses order_id, shows connect/pay buttons using Paynch JS SDK (paynch-connect-en.js), auto-polling via atualizar-status.php
-atualizar-status.php: Secure JSON API – rate-limited, locked query, cURL to Paynch API, tolerance check, logs everything
-config.php: Centralizes DB, helpers (CSRF, sanitization, validation, logging), constants
+**Best for:** Simple e-commerce, digital products, fast setup with minimal custom code.
 
-Best for: Custom UI, SPA-like behavior, advanced logic, multi-product stores.
-Common security in both:
+### 2. Manual / Custom Integration (Full Control & Web3 Experience)
+**Folder:** `manual integration/`
 
-Cryptographically secure order_id
-Session + DB check to prevent replay/duplicates
-Tolerance: received ≥ expected × 0.988
-HTTPS mandatory
-Detailed logging (logs/paynch_YYYY-MM-DD.log)
+- `index.php`: Demo storefront listing multiple products with "Buy Now" links that point to `checkout.php?produto=...&amount=...&shop=...`
+- `checkout.php`: Custom checkout page that generates/reuses `order_id`, shows "Connect Wallet" and "Pay" buttons using the Paynch JS SDK (`paynch-connect-en.js`), and implements automatic polling + manual verification fallback via `atualizar-status.php`.
+- `atualizar-status.php`: Secure JSON backend endpoint – rate-limited, uses PDO row locking (`FOR UPDATE`), makes cURL calls to Paynch API, checks tolerance, logs events and updates the order status.
+- `config.php`: Central configuration file with PDO connection, security helpers (CSRF, sanitization, validation), constants (tolerance %, retry limits), logging function and secure headers.
 
-Prerequisites
+**Best for:** Custom UI, SPA-like behavior, advanced logic, multi-product stores, full Web3 integration.
 
-PHP 7.4+ with PDO + cURL
-MySQL/MariaDB
-Paynch account + deployed store contract (from dashboard)
-Composer not required (all vanilla PHP)
+### Common Security Features in Both Approaches
+- Cryptographically secure `order_id` generation
+- Session + database checks to prevent replay attacks and duplicates
+- Tolerance check: received amount ≥ expected × 0.988 (covers platform fees)
+- HTTPS mandatory
+- Detailed event logging to `logs/paynch_YYYY-MM-DD.log`
+- Rate limiting, secure headers, input validation and CSRF protection (in manual flow)
 
-License
-MIT – free to use, modify, deploy.
-But always validate payments server-side to avoid losses.
-Built with strong focus on security and simplicity for PHP + Paynch integrations.
-Questions? Use AI support: https://pay.paynch.io/ai or DM @paynch.io on instagram
+## Prerequisites
+- PHP 7.4+ with PDO and cURL extensions
+- MySQL or MariaDB database
+- Paynch account with a deployed store contract (generated in the dashboard at https://pay.paynch.io)
+- No Composer or external dependencies required (all vanilla PHP)
+
+## License
+MIT License – free to use, modify and deploy in any project.  
+**Important:** Always validate payments **server-side** to prevent financial losses.
+
+Built with a strong focus on security and simplicity for PHP developers integrating Paynch.  
+Questions? Use the AI support at https://pay.paynch.io/ai or reach out on X: @paynchio 🚀
