@@ -41,6 +41,9 @@ paynch-php-examples/
 └── README.md
 
 
+This structure keeps both integrations self-contained while sharing the database schema.
+
+
 ## Database Setup (Required for Both)
 
 Import `exemplo banco de dados.sql` (or use this schema):
