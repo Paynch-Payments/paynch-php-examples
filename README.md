@@ -27,21 +27,27 @@ Accept **USDT** (or custom ERC-20 tokens) 100% on-chain, no KYC, no custody of f
 
 ## Repository Structure
 
-Two complete, production-ready integration approaches:
-paynch-php-examples/
-├── button integration/                    # Easy: Paynch Button embed + redirect confirmation
-│   ├── checkout.php                       # Product page → generates order → embeds Paynch Button
-│   └── confirmacao.php                    # Confirmation page (polling via reload + API check)
-├── manual integration/                    # Advanced: Full control with Web3 connect + custom polling
-│   ├── atualizar-status.php               # Secure JSON endpoint (verify payment, update DB)
-│   ├── checkout.php                       # Custom checkout with Paynch JS SDK + auto/manual verify
-│   ├── config.php                         # PDO connection, security helpers, constants, logging
-│   └── index.php                          # Demo storefront with multiple products
-├── exemplo banco de dados.sql             # SQL schema for pedidos table (common to both)
+The repository contains two ready-to-use integration examples:
+
+- **button integration/**  
+  Simple and fast setup using the official Paynch Button embed.  
+  - `checkout.php` → Generates secure order ID, displays product info and embeds the Paynch Button.  
+  - `confirmacao.php` → Handles payment confirmation with automatic reload polling and server-side API validation.
+
+- **manual integration/**  
+  Advanced setup with full control, Web3 wallet connection and custom polling.  
+  - `atualizar-status.php` → Secure backend endpoint (JSON) that verifies payment via Paynch API, applies tolerance check and updates the database.  
+  - `checkout.php` → Custom checkout page with Paynch JS SDK, connect/pay buttons and automatic/manual verification.  
+  - `config.php` → Database connection, security helpers, constants, logging and validation functions.  
+  - `index.php` → Demo storefront listing multiple products with "Buy Now" links.
+
+- Shared files:  
+  - `exemplo banco de dados.sql` → SQL schema for the `pedidos` table (used by both integrations).  
+  - `README.md`
+
+Both approaches share the same database schema and follow the same security principles (server-side validation mandatory).
 └── README.md
 
-
-This structure keeps both integrations self-contained while sharing the database schema.
 
 
 ## Database Setup (Required for Both)
