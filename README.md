@@ -115,4 +115,4 @@ MIT License – free to use, modify and deploy in any project.
 **Important:** Always validate payments **server-side** to prevent financial losses.
 
 Built with a strong focus on security and simplicity for PHP developers integrating Paynch.  
-Questions? Use the AI support at https://pay.paynch.io/ai or reach out on X: @paynchio 🚀
+Questions? Use the AI support at https://pay.paynch.io/ai or reach out on X: @paynch.io 🚀
