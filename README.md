@@ -1,6 +1,6 @@
 # Paynch PHP Examples
 
-Practical, secure PHP integration examples for **Paynch** – non-custodial crypto payments on EVM chains (BSC, Polygon, Arbitrum, Base).
+Practical, secure PHP integration examples for **Paynch**. non-custodial crypto payments on EVM chains (BSC, opBNB).
 
 Accept **USDT** (or custom ERC-20 tokens) 100% on-chain, no KYC, no custody of funds, with mandatory server-side validation.
 
