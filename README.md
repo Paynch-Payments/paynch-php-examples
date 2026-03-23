@@ -15,15 +15,15 @@ Accept **USDT** (or custom ERC-20 tokens) 100% on-chain, no KYC, no custody of f
 - Detailed event logging (file-based)
 - Automatic polling + manual verification fallback
 
-**Critical rule:** **Always validate server-side** via `https://api.paynch.io/paynch.php`. Never trust frontend signals alone!
+**Critical rule:** **Always validate server-side** via `https://api.paynch.app/paynch.php`. Never trust frontend signals alone!
 
 ## Official Paynch Resources
 
-- Dashboard (connect wallet): [https://pay.paynch.io](https://pay.paynch.io)
-- How-to guide: [https://pay.paynch.io/how](https://pay.paynch.io/how)
-- API docs (verification): [https://pay.paynch.io/api](https://pay.paynch.io/api)
-- Button integration: [https://pay.paynch.io/botao](https://pay.paynch.io/botao)
-- AI support: [https://pay.paynch.io/ai](https://pay.paynch.io/ai)
+- Dashboard (connect wallet): [https://pay.paynch.app](https://pay.paynch.app)
+- How-to guide: [https://pay.paynch.app/how](https://pay.paynch.app/how)
+- API docs (verification): [https://pay.paynch.app/api](https://pay.paynch.app/api)
+- Button integration: [https://pay.paynch.app/botao](https://pay.paynch.app/botao)
+- AI support: [https://pay.paynch.app/ai](https://pay.paynch.app/ai)
 
 ## Repository Structure
 
@@ -80,7 +80,7 @@ CREATE INDEX idx_contract_status ON pedidos(contract_loja, status);
 **Folder:** `button integration/`
 
 - `checkout.php`: Generates secure `order_id`, stores it in DB and session, displays product details and embeds the Paynch Button via  
-  `<script src="https://pay.paynch.io/button/button-connect.js">` with all required data attributes.  
+  `<script src="https://pay.paynch.app/button/button-connect.js">` with all required data attributes.  
   On success, redirects to `confirmacao.php?orderId=...`
 - `confirmacao.php`: Confirmation page that polls itself (auto-reload every ~5s), queries the Paynch API, applies 1.1–1.2% tolerance, updates the database transactionally and shows success/failure status.
 
@@ -107,7 +107,7 @@ CREATE INDEX idx_contract_status ON pedidos(contract_loja, status);
 ## Prerequisites
 - PHP 7.4+ with PDO and cURL extensions
 - MySQL or MariaDB database
-- Paynch account with a deployed store contract (generated in the dashboard at https://pay.paynch.io)
+- Paynch account with a deployed store contract (generated in the dashboard at https://pay.paynch.app)
 - No Composer or external dependencies required (all vanilla PHP)
 
 ## License
@@ -115,4 +115,4 @@ MIT License – free to use, modify and deploy in any project.
 **Important:** Always validate payments **server-side** to prevent financial losses.
 
 Built with a strong focus on security and simplicity for PHP developers integrating Paynch.  
-Questions? Use the AI support at https://pay.paynch.io/ai or reach out on X: @paynch.io 🚀
+Questions? Use the AI support at https://pay.paynch.app/ai or reach out on X: @paynch.app 🚀
