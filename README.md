@@ -22,7 +22,7 @@ Accept **USDT** (or custom ERC-20 tokens) 100% on-chain, no KYC, no custody of f
 - Dashboard (connect wallet): [https://pay.paynch.app](https://pay.paynch.app)
 - How-to guide: [https://pay.paynch.app/how](https://pay.paynch.app/how)
 - API docs (verification): [https://pay.paynch.app/api](https://pay.paynch.app/api)
-- Button integration: [https://pay.paynch.app/botao](https://pay.paynch.app/botao)
+- Button integration: [https://pay.paynch.app/botao](https://pay.paynch.app/button)
 - AI support: [https://pay.paynch.app/ai](https://pay.paynch.app/ai)
 
 ## Repository Structure
