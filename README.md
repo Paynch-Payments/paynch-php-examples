@@ -80,7 +80,7 @@ CREATE INDEX idx_contract_status ON pedidos(contract_loja, status);
 **Folder:** `button integration/`
 
 - `checkout.php`: Generates secure `order_id`, stores it in DB and session, displays product details and embeds the Paynch Button via  
-  `<script src="https://pay.paynch.app/button/button-connect.js">` with all required data attributes.  
+  `<script src="https://cdn.jsdelivr.net/gh/Paynch-Payments/teste@main/paynch-connect.js">` with all required data attributes.  
   On success, redirects to `confirmacao.php?orderId=...`
 - `confirmacao.php`: Confirmation page that polls itself (auto-reload every ~5s), queries the Paynch API, applies 1.1–1.2% tolerance, updates the database transactionally and shows success/failure status.
 
@@ -115,4 +115,4 @@ MIT License – free to use, modify and deploy in any project.
 **Important:** Always validate payments **server-side** to prevent financial losses.
 
 Built with a strong focus on security and simplicity for PHP developers integrating Paynch.  
-Questions? Use the AI support at https://pay.paynch.app/ai or reach out on X: @paynch.app 🚀
+Questions? Use the AI support at https://pay.paynch.app/ai or reach out on X: @paynch.io 🚀
